@@ -1,0 +1,23 @@
+/* your styles go here */
+.form-group label {
+    font-weight: bold;
+}
+.dnuihfr3 {
+    background: #e8e8e8;
+    padding: 17px 11px;
+}
+.form-inline {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.dnuihfr3 button#btn-filter {
+    margin-right: 10px;
+}
+#pic{
+	width: 100px;
+}
+
