@@ -17,13 +17,13 @@
         <!-- Author -->
         <p class="lead">
          Posted by
-          <a href="#">Admin</a>
+          <a href="#">
+            <?php  echo $row->name;?>
+            </a>
         </p>
-
         <hr>
         <!-- Date/Time -->
         <p>Posted on <?=$row->created_at;?></p>
-
         <hr>
 
         <!-- Preview Image -->

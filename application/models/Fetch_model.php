@@ -24,10 +24,23 @@ class Fetch_model extends CI_Model
     }
 
 	public function fetch_all_blog($limit, $start){
+		$this->db->select('register.name,register.image,tbl_blog.*');
+		$this->db->from('register');
+		$this->db->join('tbl_blog','tbl_blog.created_id=register.id');
 		$this->db->limit($limit,$start);
-		$this->db->where('status',1);
-		$query = $this->db->get($this->table);
+		$query = $this->db->get();
 		return $query->result();
+		
+	}
+
+	public function get_record_blog($table,$where)
+	{
+		
+		$this->db->select('register.name,register.image,tbl_blog.*');
+		$this->db->from('register');
+		$this->db->join('tbl_blog','tbl_blog.created_id=register.id');
+		$this->db->where($where);
+		return $this->db->get()->row_array();
 
 	}
 

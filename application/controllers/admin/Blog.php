@@ -86,9 +86,10 @@ class Blog extends CI_Controller {
 					'title' => $this->input->post('title'), 
 					'slug' => strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $this->input->post('title')))),
                     'status' => trim($this->input->post('status')),
-                    'description' => trim($this->input->post('description'))
+                    'description' => trim($this->input->post('description')),
+                    'created_by' => 'Admin', 
+                    'created_id' => $this->session->userdata('id')
 				);
-
 
 				if (!empty($image))
 				{
@@ -146,7 +147,8 @@ class Blog extends CI_Controller {
 					'title' => $this->input->post('title'), 
 					'slug' => strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $this->input->post('title')))),
                     'status' => trim($this->input->post('status')),
-                    'description' => trim($this->input->post('description'))
+                    'description' => trim($this->input->post('description')),
+                    
 				);
 
 

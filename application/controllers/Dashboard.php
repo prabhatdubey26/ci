@@ -8,6 +8,8 @@ class Dashboard extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->model('fetch_model');
+		$this->load->model('admin/manage_blog_model');
+
 		 $this->load->library("pagination");
 	}
 	
@@ -40,7 +42,6 @@ class Dashboard extends CI_Controller {
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 		$data['title'] = 'Dashboard';
 		$data['site_data'] = $this->fetch_model->get_record_row('tbl_site_setting',array('id'=>1));
-		$data['status'] = 'active';
 		$data['blog']=$this->fetch_model->fetch_all_blog($config["per_page"], $page);
 		$this->load->view('dashboard',$data);
 	}
@@ -71,14 +72,12 @@ class Dashboard extends CI_Controller {
 
 	    }
 		$data['site_data'] = $this->fetch_model->get_record_row('tbl_site_setting',array('id'=>1));
-		$data['status'] = 'active';
 		$data['title'] = 'Contact Us';
 		$this->load->view('contact',$data);
 	}
 	public function about()
 	{
 		$data['site_data'] = $this->fetch_model->get_record_row('tbl_site_setting',array('id'=>1));
-		$data['status'] = 'active';
 		$data['title'] = 'About Us';
 		$this->load->view('about',$data);
 	}
@@ -106,7 +105,7 @@ class Dashboard extends CI_Controller {
 
 		$data['site_data'] = $this->fetch_model->get_record_row('tbl_site_setting',array('id'=>1));
 		$data['title'] = 'View Blog';
-		$data['blog'] = $this->fetch_model->get_record_row('tbl_blog',array('slug'=>$slug));
+		$data['blog'] = $this->fetch_model->get_record_blog('tbl_blog',array('slug'=>$slug));
 		$blog_id = $data['blog']['id'];
 		$data['comment'] = $this->fetch_model->fetch_all_comment('comment',$blog_id);
 		$this->load->view('single_blog',$data);
@@ -169,5 +168,62 @@ class Dashboard extends CI_Controller {
 	    	}
 	    }
 	}
+	 public function add_blog()
+	{
+		$post = $this->input->post();
+			if (isset($post) && !empty($post)) {
 
+				$image = '';
+
+					$config['upload_path']          = 'assets/admin/image/blog/';
+	                $config['allowed_types']        = 'gif|jpg|png';
+	                $config['max_size']             = 1024000;
+	                $config['encrypt_name']         = TRUE;
+	                
+	                $this->load->library('upload', $config);
+	                $this->upload->initialize($config);
+	                if (!empty($_FILES['image']['name'])) {
+
+
+	                	if ( ! $this->upload->do_upload('image')) {
+				            $error = array('error' => $this->upload->display_errors()); 
+				            print_r($error);die;
+				         }
+							
+				         else{ 
+				            $data = $this->upload->data();
+				            $image = $data['file_name'];
+				           
+				         } 
+				                	
+				    }
+
+					$data = array(
+					'title' => $this->input->post('title'), 
+					'slug' => strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $this->input->post('title')))),
+                    'status' => trim($this->input->post('status')),
+                    'description' => trim($this->input->post('description')),
+                    'created_by' => 'User', 
+                    'created_id' => $this->input->post('created_id')
+				);
+
+				if (!empty($image))
+				{
+						$data['image'] =$image; 
+				}	
+
+                $row = $this->manage_blog_model->add_blog($data);
+
+                if ($row) {
+                	$arrayName = array('message' => "Record added Successfully.",'status' =>'success');
+                }else{
+                	$arrayName = array('message' => "Record not Added.",'status' =>'error');
+                }
+                
+                	echo json_encode($arrayName);exit();
+		}
+	    $data['site_data'] = $this->fetch_model->get_record_row('tbl_site_setting',array('id'=>1));
+		$data['title'] = 'Add Blog';
+		$this->load->view('add_blog',$data);
+	}
 }

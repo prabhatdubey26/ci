@@ -22,16 +22,19 @@ $id = $this->session->userdata('id');
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item <?php if(!empty($status)){echo $status;}?>">
+      <li class="nav-item active">
         <a class="nav-link" href="<?= base_url('dashboard')?>">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item <?php if(!empty($status)){echo $status;}?>">
+      <li class="nav-item active">
         <a class="nav-link" href="<?= base_url('dashboard/about')?>">About</a>
       </li>
-      <li class="nav-item <?php if(!empty($status)){echo $status;}?>">
+      <li class="nav-item active">
         <a class="nav-link" href="<?= base_url('dashboard/fetch_user_list')?>">UserList</a>
       </li>
-      <li class="nav-item <?php if(!empty($status)){echo $status;}?>">
+      <li class="nav-item active">
+        <a class="nav-link" href="<?= base_url('dashboard/add_blog')?>">Blog</a>
+      </li>
+      <li class="nav-item active">
         <a class="nav-link" href="<?= base_url('dashboard/contact')?>">Contact</a>
       </li>
     </ul>

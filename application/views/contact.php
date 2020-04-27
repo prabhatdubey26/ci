@@ -13,7 +13,7 @@
 				document.getElementById("map").innerHTML = "Geolocation is not supported by this browser.";
 			  }
 			}
-
+			
 			function showPosition(position) {
 			  //window.location.href="https://www.google.com/maps?q="+position.coords.latitude+","+position.coords.longitude+"";
 			  initMap(position.coords.latitude, position.coords.longitude);

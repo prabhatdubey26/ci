@@ -55,6 +55,7 @@ class Register extends CI_Controller {
 					'email' => $this->input->post('email'), 
 					'password' => md5($this->input->post('password')), 
 					'address' => $this->input->post('address'), 
+					'role'=>'User'
 				);
 
 

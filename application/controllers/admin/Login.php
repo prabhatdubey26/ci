@@ -26,7 +26,7 @@ class Login extends CI_Controller
 	    	$username = $this->input->post('email');
 	    	$password = $this->input->post('password');
 	    	$row = $this->login_model->check_user($username);
-	    	if (!empty($row) && $row['password']==md5($password))
+	    	if (!empty($row) && $row['password']==md5($password) && $row['role']=='Admin')
 	    	{   
 	    		//$user_type = $this->login_model->get_user_type($row['id']);
 	    		$data = array(

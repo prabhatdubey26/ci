@@ -3,13 +3,18 @@
 <div class="container my-3">
 
        <h2 class="blog-post-title"><?=$blog["title"];?></h2>
-        <p class="blog-post-meta"><?=$blog["created_at"];?> By <a href="<?php echo base_url("dashboard/about") ?>">Admin</a></p>
+        <p class="blog-post-meta"><?=$blog["created_at"];?> </p>
+       <p class="lead">
+         Posted by
+          <a href="<?php echo base_url("dashboard/about") ?>"> 
+            <?=$blog["name"];?>
+            </a>
+        </p>
          <img class="img-fluid rounded" src="<?php echo base_url('assets/admin/image/blog/'.$blog['image']); ?>" alt="" style="height: 300px;width: 100%;">
         <p class="my-4"><?=$blog["description"];?></p>
        
         <hr>
       </div>
-     
       <div class="container">
       <?php if($this->session->userdata('is_login'))
       {
@@ -70,7 +75,15 @@
                             <button class="btn btn-sm btn-primary" type="submit">Reply</button>
                         </form>
                     </div>
-               <?php }?>
+               <?php } if(!empty($com->parent_id)) {?>
+              <div class="media mt-4">
+              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+              <div class="media-body">
+                <h5 class="mt-0">Commenter Name</h5>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              </div>
+            </div>
+        <?php }?>
           </div>
         </div> 
         <?php } ?> 
