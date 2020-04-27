@@ -5,16 +5,15 @@
                     <div class="row">
 						<div class="col-md-7 col-sm-6">
 							<div class="about-title clearfix">
-								<h1>About <span>Prabhat Tech</span></h1>
-								<h3>Lorem ipsum dolor sit amet </h3>
-								<p class="about-paddingB">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquet dolor libero, eget venenatis mauris finibus dictum. Vestibulum quis elit eget neque porttitor congue non sit amet dolor. Proin pretium purus a lorem ornare </p>
-								<p>sed lobortis pulvinar. Integer laoreet mi id eros porta euismod. Suspendisse potenti. Nulla eros mauris, convallis et sem tempus, viverra hendrerit sapien</p>
+								<h1>About <span><?=isset($site_data['site_title'])?$site_data['site_title']:''?></span></h1>
+								<p class="about-paddingB"><?=isset($site_data['site_meta_description'])?$site_data['site_meta_description']:''?></p>
 						<div class="about-icons"> 
                             <ul >
-                                <li><a href="https://www.facebook.com/"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a> </li>
-                                <li><a href="https://twitter.com/"><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a> </li>
-                                <li> <a href="https://plus.google.com/"><i id="social-gp" class="fa fa-google-plus-square fa-3x social"></i></a> </li>
-                                <li> <a href="mailto:bootsnipp@gmail.com"><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a> </li>
+                                <li><a href="<?=isset($site_data['facebook'])?$site_data['facebook']:''?>" target="blank"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a> </li>
+                                <li><a href="<?=isset($site_data['twitter'])?$site_data['twitter']:''?>" target="blank"><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a> </li>
+                                <li> <a href="<?=isset($site_data['youtube'])?$site_data['youtube']:''?>"><i id="social-yt" class="fa fa-youtube-square fa-3x social"></i></a> </li>
+                                <li> <a href="mailto:<?=isset($site_data['email'])?$site_data['email']:''?>"><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a> </li>
+                                 <li> <a href="<?=isset($site_data['linkedin'])?$site_data['linkedin']:''?>"  target="blank"><i id="social-lk" class="fa fa-linkedin-square fa-3x social"></i></a> </li>
                             </ul>       
 	        					</div>
 							</div>
