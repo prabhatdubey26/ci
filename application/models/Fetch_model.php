@@ -119,8 +119,13 @@ class Fetch_model extends CI_Model
 		$this->db->select('register.name,register.image,comment.*');
 		$this->db->from('register');
 		$this->db->join($table,'comment.user_id=register.id');
-		$this->db->where("blog_id",$id);
+		$this->db->where("blog_id",$id,'parent_id','');
 		$query = $this->db->get();
+		return $query->result();
+	}
+	public function fetch_all_profile()
+	{
+		$query = $this->db->get('imageupload');
 		return $query->result();
 	}
 

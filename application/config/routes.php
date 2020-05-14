@@ -53,3 +53,6 @@ $route['default_controller'] = 'dashboard';
 $route['admin'] = 'admin/dashboard';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+// $route['my-form'] = "MyFormController";
+// $route['my-form-upload']['post'] = "MyFormController/post";
